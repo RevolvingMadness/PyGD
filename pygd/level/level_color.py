@@ -30,67 +30,67 @@ class LevelColor:
 
     @property
     def from_color_green(self) -> int | None:
-        return self.properties[1]
+        return self.properties[2]
 
     @property
     def from_color_blue(self) -> int | None:
-        return self.properties[1]
+        return self.properties[3]
 
     @property
     def player_color(self) -> int | None:
-        return self.properties[1]
+        return self.properties[4]
 
     @property
     def blending(self) -> bool | None:
-        return to_bool(self.properties[1])
+        return to_bool(self.properties[5])
 
     @property
     def color_channel_index(self) -> int | None:
-        return self.properties[1]
+        return self.properties[6]
 
     @property
     def from_opacity(self) -> float | None:
-        return self.properties[1]
+        return self.properties[7]
 
     @property
     def toggle_opacity(self) -> bool | None:
-        return to_bool(self.properties[1])
+        return to_bool(self.properties[8])
 
     @property
     def inherited_color_channel_index(self) -> int | None:
-        return self.properties[1]
+        return self.properties[9]
 
     @property
     def hsv(self) -> int | None:
-        return self.properties[1]
+        return self.properties[10]
 
     @property
     def to_color_red(self) -> int | None:
-        return self.properties[1]
+        return self.properties[11]
 
     @property
     def to_color_green(self) -> int | None:
-        return self.properties[1]
+        return self.properties[12]
 
     @property
     def to_color_blue(self) -> int | None:
-        return self.properties[1]
+        return self.properties[13]
 
     @property
     def delta_time(self) -> float | None:
-        return self.properties[1]
+        return self.properties[14]
 
     @property
     def to_opacity(self) -> float | None:
-        return self.properties[1]
+        return self.properties[15]
 
     @property
     def duration(self) -> float | None:
-        return self.properties[1]
+        return self.properties[16]
 
     @property
     def copy_opacity(self) -> bool | None:
-        return to_bool(self.properties[1])
+        return to_bool(self.properties[17])
 
     def __repr__(self) -> str:
         return f"({self.from_color_red},{self.from_color_green},{self.from_color_blue})"
