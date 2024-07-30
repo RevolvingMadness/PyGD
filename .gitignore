@@ -1,0 +1,6 @@
+__pycache__/
+.idea/
+
+CCLocalLevels.dat
+CCLocalLevelsDecrypted.xml
+test.py
