@@ -1,6 +1,7 @@
 from .easing import *
 from .gamemode import *
 from .instant_count_comparison import *
+from .objects import *
 from .official_song import *
 from .pulse_mode import *
 from .pulse_target_type import *
