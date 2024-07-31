@@ -3,7 +3,7 @@ from .level_object import LevelObject
 
 # I don't really know what to add to this class.
 # I only created this because I needed an
-# `encode_to_string` method.
+# `pygd_encode` method.
 # If any of you have ideas, open an issue.
 
 
@@ -20,10 +20,10 @@ class LevelObjects:
     def add_object(self, level_object: LevelObject) -> None:
         self._list.append(level_object)
 
-    def encode_to_string(self) -> str:
+    def pygd_encode(self) -> str:
         result = ""
 
         for level_object in self._list:
-            result += f"{level_object.encode_to_string()};"
+            result += f"{level_object.pygd_encode()};"
 
         return result

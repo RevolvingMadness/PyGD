@@ -1,6 +1,5 @@
-import base64
-
 from pygd.level.level_data import LevelData
+from pygd.level.level_description import LevelDescription
 from pygd.utility.type_converter import to_bool, to_int
 
 
@@ -12,8 +11,7 @@ class Level:
 
         description = self._json.get("k3")
         if description is not None:
-            description = base64.b64decode(description).decode()
-            self._json["k3"] = description
+            self._json["k3"] = LevelDescription(description)
 
         data = self._json.get("k4")
         if data is not None:
@@ -763,3 +761,11 @@ class Level:
     @editor_layer.setter
     def editor_layer(self, value: float) -> None:
         self._json["kI7"] = value
+
+    def pygd_encode(self) -> dict:
+        result = {}
+
+        for key, value in self._json.items():
+            result[key] = value.pygd_encode()
+
+        return result

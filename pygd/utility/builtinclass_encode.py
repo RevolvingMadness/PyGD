@@ -1,10 +1,14 @@
-def _int_encode_to_string(integer: int) -> str:
-    return str(integer)
+def _int_pygd_encode(integer: int) -> int:
+    return integer
 
 
-def _float_encode_to_string(float_: float) -> str:
-    return str(float_)
+def _float_pygd_encode(float_: float) -> float:
+    return float_
 
 
-def _str_encode_to_string(string: str) -> str:
+def _str_pygd_encode(string: str) -> str:
     return string
+
+
+def _dict_pygd_encode(dictionary: dict) -> dict:
+    return dictionary

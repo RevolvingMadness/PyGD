@@ -885,10 +885,10 @@ class LevelObject:
             "3": 15  # y
         })
 
-    def encode_to_string(self) -> str:
+    def pygd_encode(self) -> str:
         result = ""
 
         for key, value in self._json.items():
-            result += f"{key},{value.encode_to_string()},"
+            result += f"{key},{value.pygd_encode()},"
 
         return result[:-1]

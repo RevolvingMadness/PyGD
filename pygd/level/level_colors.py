@@ -17,10 +17,10 @@ class LevelColors:
         for color_dict in level_colors_list:
             self._list.append(LevelColor(color_dict))
 
-    def encode_to_string(self) -> str:
+    def pygd_encode(self) -> str:
         result = ""
 
         for color in self._list:
-            result += f"{color.encode_to_string()}|"
+            result += f"{color.pygd_encode()}|"
 
         return result

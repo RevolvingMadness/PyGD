@@ -18,3 +18,15 @@ class Levels:
 
     def delete(self, name: str) -> Level:
         return self.levels.pop(name)
+
+    def pygd_encode(self) -> dict:
+        result = {}
+
+        current_level = 0
+
+        for key, value in self.levels.items():
+            result[f"k_{current_level}"] = value.pygd_encode()
+
+            current_level += 1
+
+        return result

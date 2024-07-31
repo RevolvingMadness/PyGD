@@ -1,6 +1,8 @@
 __pycache__/
 .idea/
+backups/
 
 CCLocalLevels.dat
 CCLocalLevelsDecrypted.xml
 test.py
+test2.py
