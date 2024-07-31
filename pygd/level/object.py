@@ -1,124 +1,598 @@
+from pygd.utility.string_helper import decode_object_string
+from ..utility.type_converter import to_bool, to_int
+
+
+###
+# potentially discarded, bottom of page
+# undiscovered, bottom of page
+# https://wyliemaster.github.io/gddocs/#/resources/client/level-components/level-object
+###
+
 class Object:
-    def __init__(self, id_: int = 1, x: int = 15, y: int = 15) -> None:
-        self.id = id_
-        self.x = x
-        self.y = y
+    def __init__(self, object_string: str) -> None:
+        object_json = decode_object_string(object_string)
 
-    @staticmethod
-    def from_json(object_json: dict) -> "Object":
-        level_object = Object()
+        self.properties = {
+            "1": object_json.get("1"),  # id
+            "2": object_json.get("2"),  # x
+            "3": object_json.get("3"),  # y
+            "4": object_json.get("4"),  # flipped_horizontally
+            "5": object_json.get("5"),  # flipped_vertically
+            "6": object_json.get("6"),  # rotation
+            "7": object_json.get("7"),  # red
+            "8": object_json.get("8"),  # green
+            "9": object_json.get("9"),  # blue
+            "10": object_json.get("10"),  # duration
+            "11": object_json.get("11"),  # touch_triggered
+            "12": object_json.get("12"),  # secret_coin_id
+            "13": object_json.get("13"),  # special_object_checked
+            "14": object_json.get("14"),  # tint_ground
+            "15": object_json.get("15"),  # player_color_one
+            "16": object_json.get("16"),  # player_color_two
+            "17": object_json.get("17"),  # blending
+            "18": object_json.get("18"),  # unknown - potentially discarded
+            "19": object_json.get("19"),  # one_point_nine_color_channel_id
+            "20": object_json.get("20"),  # editor_layer_one
+            "21": object_json.get("21"),  # main_color_channel_id
+            "22": object_json.get("22"),  # secondary_color_channel_id
+            "23": object_json.get("23"),  # target_color_id
+            "24": object_json.get("24"),  # z_layer
+            "25": object_json.get("25"),  # z_order
+            "26": object_json.get("26"),  # unknown - potentially discarded
+            "27": object_json.get("27"),  # unknown - potentially discarded
+            "28": object_json.get("28"),  # offset_x
+            "29": object_json.get("29"),  # offset_y
+            "30": object_json.get("30"),  # easing
+            "31": object_json.get("31"),  # text
+            "32": object_json.get("32"),  # scaling
+            "33": object_json.get("33"),  # single_group_id
+            "34": object_json.get("34"),  # group_parent
+            "35": object_json.get("35"),  # opacity
+            # suspected to be handling whether an object's X position is locked and unaffected by a Move trigger
+            "36": object_json.get("36"),  # unknown - undiscovered
+            "37": object_json.get("37"),  # unknown - potentially discarded
+            "38": object_json.get("38"),  # unknown - potentially discarded
+            "39": object_json.get("39"),  # unknown - potentially discarded
+            "40": object_json.get("40"),  # unknown - potentially discarded
+            "41": object_json.get("41"),  # main_color_hsv_enabled
+            "42": object_json.get("42"),  # secondary_color_hsv_enabled
+            "43": object_json.get("43"),  # main_color_hsv
+            "44": object_json.get("44"),  # secondary_color_hsv
+            "45": object_json.get("45"),  # fade_in
+            "46": object_json.get("46"),  # hold
+            "47": object_json.get("47"),  # fade_out
+            "48": object_json.get("48"),  # pulse_mode
+            "49": object_json.get("49"),  # copied_color_hsv
+            "50": object_json.get("50"),  # copied_color_id
+            "51": object_json.get("51"),  # target_group_id
+            "52": object_json.get("52"),  # pulse_target_type
+            "53": object_json.get("53"),  # unknown - potentially discarded
+            "54": object_json.get("54"),  # yellow_teleportation_portal_y_offset
+            "55": object_json.get("55"),  # teleport_portal_ease
+            "56": object_json.get("56"),  # activate_group
+            "57": object_json.get("57"),  # group_ids
+            "58": object_json.get("58"),  # lock_to_player_x
+            "59": object_json.get("59"),  # lock_to_player_y
+            "60": object_json.get("60"),  # copy_opacity
+            "61": object_json.get("61"),  # editor_layer_two
+            "62": object_json.get("62"),  # spawn_triggered
+            "63": object_json.get("63"),  # spawn_delay
+            "64": object_json.get("64"),  # dont_fade
+            "65": object_json.get("65"),  # main_only
+            "66": object_json.get("66"),  # detail_only
+            "67": object_json.get("67"),  # dont_enter
+            "68": object_json.get("68"),  # degrees
+            "69": object_json.get("69"),  # times_three_sixty
+            "70": object_json.get("70"),  # lock_object_rotation
+            "71": object_json.get("71"),  # secondary_group_id
+            "72": object_json.get("72"),  # x_mod
+            "73": object_json.get("73"),  # y_mod
+            # only found in the Follow Player Y trigger
+            "74": object_json.get("74"),  # unknown - undiscovered
+            "75": object_json.get("75"),  # strength
+            "76": object_json.get("76"),  # animation_id
+            "77": object_json.get("77"),  # count
+            "78": object_json.get("78"),  # subtract_count
+            "79": object_json.get("79"),  # pickup_mode
+            "80": object_json.get("80"),  # item_block_id
+            "81": object_json.get("81"),  # hold_mode
+            "82": object_json.get("82"),  # toggle_mode
+            "83": object_json.get("83"),  # unknown - potentially discarded
+            "84": object_json.get("84"),  # interval
+            "85": object_json.get("85"),  # easing_rate
+            "86": object_json.get("86"),  # exclusive
+            "87": object_json.get("87"),  # multi_trigger
+            "88": object_json.get("88"),  # comparison
+            "89": object_json.get("89"),  # dual_mode
+            "90": object_json.get("90"),  # speed
+            "91": object_json.get("91"),  # follow_delay
+            "92": object_json.get("92"),  # y_offset
+            "93": object_json.get("93"),  # trigger_on_exit
+            "94": object_json.get("94"),  # dynamic_block
+            "95": object_json.get("95"),  # block_b_id
+            "96": object_json.get("96"),  # disable_glow
+            "97": object_json.get("97"),  # custom_rotation_speed
+            "98": object_json.get("98"),  # disable_rotation
+            "99": object_json.get("99"),  # multi_activate_orb
+            "100": object_json.get("100"),  # enable_use_target
+            "101": object_json.get("101"),  # target_pos_coordinates
+            "102": object_json.get("102"),  # editor_disable
+            "103": object_json.get("103"),  # high_detail
+            "104": object_json.get("104"),  # multi_activate_trigger
+            "105": object_json.get("105"),  # max_speed
+            "106": object_json.get("106"),  # randomize_start
+            "107": object_json.get("107"),  # animation_speed
+            "108": object_json.get("108"),  # linked_group_id
+            "109": object_json.get("109"),  # unknown - potentially discarded
+            "110": object_json.get("110"),  # exit_static
+            "111": object_json.get("111"),  # free_mode
+            "112": object_json.get("112"),  # edit_camera_settings
+            "113": object_json.get("113"),  # easing_free_mode
+            "114": object_json.get("114"),  # padding
+            "115": object_json.get("115"),  # ord
+            "116": object_json.get("116"),  # no_effects
+            "117": object_json.get("117"),  # reverse
+            "118": object_json.get("118"),  # unknown - potentially discarded
+            "119": object_json.get("119"),  # unknown - potentially discarded
+            "120": object_json.get("120"),  # time_mod
+            "121": object_json.get("121"),  # no_touch
+            "122": object_json.get("122"),  # unknown - potentially discarded
+            "123": object_json.get("123"),  # unknown - potentially discarded
+            "124": object_json.get("124"),  # unknown - potentially discarded
+            "125": object_json.get("125"),  # unknown - potentially discarded
+            "126": object_json.get("126"),  # unknown - potentially discarded
+            "127": object_json.get("127"),  # unknown - potentially discarded
+            "128": object_json.get("128"),  # scale_x
+            "129": object_json.get("129"),  # scale_y, not sure (documentation is bugged)
+            "130": object_json.get("130"),  # unknown - potentially discarded
+            "131": object_json.get("131"),  # warp_y_angle
+            "132": object_json.get("132"),  # warp_x_angle
+            # Suspected to be something related to optimizing colors. Appears on all objects
+            "155": object_json.get("155"),  # unknown - undiscovered
+            # Same as 155
+            "156": object_json.get("156")  # unknown - undiscovered
+        }
 
-        level_object.id = object_json.get("id")
-        level_object.x = object_json.get("x")
-        level_object.y = object_json.get("y")
-        level_object.flipped_horizontally = object_json.get("flipped_horizontally")
-        level_object.flipped_vertically = object_json.get("flipped_vertically")
-        level_object.rotation = object_json.get("rotation")
-        level_object.red = object_json.get("red")
-        level_object.green = object_json.get("green")
-        level_object.blue = object_json.get("blue")
-        level_object.duration = object_json.get("duration")
-        level_object.touch_triggered = object_json.get("touch_triggered")
-        level_object.secret_coin_id = object_json.get("secret_coin_id")
-        level_object.special_object_checked = object_json.get("special_object_checked")
-        level_object.tint_ground = object_json.get("tint_ground")
-        level_object.player_color_one = object_json.get("player_color_one")
-        level_object.player_color_two = object_json.get("player_color_two")
-        level_object.blending = object_json.get("blending")
-        level_object.one_point_nine_color_channel_id = object_json.get("one_point_nine_color_channel_id")
-        level_object.editor_layer_one = object_json.get("editor_layer_one")
-        level_object.main_color_channel_id = object_json.get("main_color_channel_id")
-        level_object.secondary_color_channel_id = object_json.get("secondary_color_channel_id")
-        level_object.target_color_id = object_json.get("target_color_id")
-        level_object.z_layer = object_json.get("z_layer")
-        level_object.z_order = object_json.get("z_order")
-        level_object.offset_x = object_json.get("offset_x")
-        level_object.offset_y = object_json.get("offset_y")
-        level_object.easing = object_json.get("easing")
-        level_object.text = object_json.get("text")
-        level_object.scaling = object_json.get("scaling")
-        level_object.single_group_id = object_json.get("single_group_id")
-        level_object.group_parent = object_json.get("group_parent")
-        level_object.opacity = object_json.get("opacity")
-        level_object.main_color_hsv_enabled = object_json.get("main_color_hsv_enabled")
-        level_object.secondary_color_hsv_enabled = object_json.get("secondary_color_hsv_enabled")
-        level_object.main_color_hsv = object_json.get("main_color_hsv")
-        level_object.secondary_color_hsv = object_json.get("secondary_color_hsv")
-        level_object.fade_in = object_json.get("fade_in")
-        level_object.hold = object_json.get("hold")
-        level_object.fade_out = object_json.get("fade_out")
-        level_object.pulse_mode = object_json.get("pulse_mode")
-        level_object.copied_color_hsv = object_json.get("copied_color_hsv")
-        level_object.copied_color_id = object_json.get("copied_color_id")
-        level_object.target_group_id = object_json.get("target_group_id")
-        level_object.pulse_target_type = object_json.get("pulse_target_type")
-        level_object.yellow_teleportation_portal_y_offset = object_json.get("yellow_teleportation_portal_y_offset",
-                                                                            None)
-        level_object.teleport_portal_ease = object_json.get("teleport_portal_ease")
-        level_object.activate_group = object_json.get("activate_group")
-        level_object.group_ids = object_json.get("group_ids")
-        level_object.lock_to_player_x = object_json.get("lock_to_player_x")
-        level_object.lock_to_player_y = object_json.get("lock_to_player_y")
-        level_object.copy_opacity = object_json.get("copy_opacity")
-        level_object.editor_layer_two = object_json.get("editor_layer_two")
-        level_object.spawn_triggered = object_json.get("spawn_triggered")
-        level_object.spawn_delay = object_json.get("spawn_delay")
-        level_object.dont_fade = object_json.get("dont_fade")
-        level_object.main_only = object_json.get("main_only")
-        level_object.detail_only = object_json.get("detail_only")
-        level_object.dont_enter = object_json.get("dont_enter")
-        level_object.degrees = object_json.get("degrees")
-        level_object.times_three_sixty = object_json.get("times_three_sixty")
-        level_object.lock_object_rotation = object_json.get("lock_object_rotation")
-        level_object.secondary_group_id = object_json.get("secondary_group_id")
-        level_object.x_mod = object_json.get("x_mod")
-        level_object.y_mod = object_json.get("y_mod")
-        level_object.strength = object_json.get("strength")
-        level_object.animation_id = object_json.get("animation_id")
-        level_object.count = object_json.get("count")
-        level_object.subtract_count = object_json.get("subtract_count")
-        level_object.pickup_mode = object_json.get("pickup_mode")
-        level_object.item_block_id = object_json.get("item_block_id")
-        level_object.hold_mode = object_json.get("hold_mode")
-        level_object.toggle_mode = object_json.get("toggle_mode")
-        level_object.interval = object_json.get("interval")
-        level_object.easing_rate = object_json.get("easing_rate")
-        level_object.exclusive = object_json.get("exclusive")
-        level_object.multi_trigger = object_json.get("multi_trigger")
-        level_object.comparison = object_json.get("comparison")
-        level_object.dual_mode = object_json.get("dual_mode")
-        level_object.speed = object_json.get("speed")
-        level_object.follow_delay = object_json.get("follow_delay")
-        level_object.y_offset = object_json.get("y_offset")
-        level_object.trigger_on_exit = object_json.get("trigger_on_exit")
-        level_object.dynamic_block = object_json.get("dynamic_block")
-        level_object.block_b_id = object_json.get("block_b_id")
-        level_object.disable_glow = object_json.get("disable_glow")
-        level_object.custom_rotation_speed = object_json.get("custom_rotation_speed")
-        level_object.disable_rotation = object_json.get("disable_rotation")
-        level_object.multi_activate_orb = object_json.get("multi_activate_orb")
-        level_object.enable_use_target = object_json.get("enable_use_target")
-        level_object.target_pos_coordinates = object_json.get("target_pos_coordinates")
-        level_object.editor_disable = object_json.get("editor_disable")
-        level_object.high_detail = object_json.get("high_detail")
-        level_object.multi_activate_trigger = object_json.get("multi_activate_trigger")
-        level_object.max_speed = object_json.get("max_speed")
-        level_object.randomize_start = object_json.get("randomize_start")
-        level_object.animation_speed = object_json.get("animation_speed")
-        level_object.linked_group_id = object_json.get("linked_group_id")
-        level_object.exit_static = object_json.get("exit_static")
-        level_object.free_mode = object_json.get("free_mode")
-        level_object.edit_camera_settings = object_json.get("edit_camera_settings")
-        level_object.easing_free_mode = object_json.get("easing_free_mode")
-        level_object.padding = object_json.get("padding")
-        level_object.ord = object_json.get("ord")
-        level_object.no_effects = object_json.get("no_effects")
-        level_object.reverse = object_json.get("reverse")
-        level_object.time_mod = object_json.get("time_mod")
-        level_object.no_touch = object_json.get("no_touch")
-        level_object.scale_x = object_json.get("scale_x")
-        level_object.scale_y = object_json.get("scale_y")
-        level_object.warp_y_angle = object_json.get("warp_y_angle")
-        level_object.warp_x_angle = object_json.get("warp_x_angle")
+    @property
+    def id(self) -> int:
+        return to_int(self.properties["1"])
 
-        return level_object
+    @property
+    def x(self) -> float:
+        return self.properties["2"]
+
+    @property
+    def y(self) -> float:
+        return self.properties["3"]
+
+    @property
+    def flipped_horizontally(self) -> bool:
+        return to_bool(self.properties["4"])
+
+    @property
+    def flipped_vertically(self) -> bool:
+        return to_bool(self.properties["5"])
+
+    @property
+    def rotation(self) -> float:
+        return self.properties["6"]
+
+    @property
+    def red(self) -> int:
+        return to_int(self.properties["7"])
+
+    @property
+    def green(self) -> int:
+        return to_int(self.properties["8"])
+
+    @property
+    def blue(self) -> int:
+        return to_int(self.properties["9"])
+
+    @property
+    def duration(self) -> float:
+        return self.properties["10"]
+
+    @property
+    def touch_triggered(self) -> bool:
+        return to_bool(self.properties["11"])
+
+    @property
+    def secret_coin_id(self) -> int:
+        return to_int(self.properties["12"])
+
+    @property
+    def special_object_checked(self) -> bool:
+        return to_bool(self.properties["13"])
+
+    @property
+    def tint_ground(self) -> bool:
+        return to_bool(self.properties["14"])
+
+    @property
+    def player_color_one(self) -> bool:
+        return to_bool(self.properties["15"])
+
+    @property
+    def player_color_two(self) -> bool:
+        return to_bool(self.properties["16"])
+
+    @property
+    def blending(self) -> bool:
+        return to_bool(self.properties["17"])
+
+    @property
+    def one_point_nine_color_channel_id(self) -> int:
+        return to_int(self.properties["19"])
+
+    @property
+    def editor_layer_one(self) -> int:
+        return to_int(self.properties["20"])
+
+    @property
+    def main_color_channel_id(self) -> int:
+        return to_int(self.properties["21"])
+
+    @property
+    def secondary_color_channel_id(self) -> int:
+        return to_int(self.properties["22"])
+
+    @property
+    def target_color_id(self) -> int:
+        return to_int(self.properties["23"])
+
+    @property
+    def z_layer(self) -> int:
+        return to_int(self.properties["24"])
+
+    @property
+    def z_order(self) -> int:
+        return to_int(self.properties["25"])
+
+    @property
+    def offset_x(self) -> int:
+        return to_int(self.properties["28"])
+
+    @property
+    def offset_y(self) -> int:
+        return to_int(self.properties["29"])
+
+    @property
+    def easing(self) -> int:
+        return to_int(self.properties["30"])
+
+    @property
+    def text(self) -> str:
+        return self.properties["31"]
+
+    @property
+    def scaling(self) -> float:
+        return self.properties["32"]
+
+    @property
+    def single_group_id(self) -> int:
+        return to_int(self.properties["33"])
+
+    @property
+    def group_parent(self) -> bool:
+        return to_bool(self.properties["34"])
+
+    @property
+    def opacity(self) -> float:
+        return self.properties["35"]
+
+    @property
+    def main_color_hsv_enabled(self) -> bool:
+        return to_bool(self.properties["41"])
+
+    @property
+    def secondary_color_hsv_enabled(self) -> bool:
+        return to_bool(self.properties["42"])
+
+    # @property
+    # def main_color_hsv(self) -> HSV:  # I'm confused how to "decode" HSV
+    #     return self.properties["43"]
+
+    # @property
+    # def secondary_color_hsv(self) -> HSV:  # I'm confused how to "decode" HSV
+    #     return self.properties["44"]
+
+    @property
+    def fade_in(self) -> float:
+        return self.properties["45"]
+
+    @property
+    def hold(self) -> float:
+        return self.properties["46"]
+
+    @property
+    def fade_out(self) -> float:
+        return self.properties["47"]
+
+    @property
+    def pulse_mode(self) -> int:
+        return to_int(self.properties["48"])
+
+    # @property
+    # def copied_color_hsv(self) -> HSV:  # I'm confused how to "decode" HSV
+    #     return self.properties["49"]
+
+    @property
+    def copied_color_id(self) -> int:
+        return to_int(self.properties["50"])
+
+    @property
+    def target_group_id(self) -> int:
+        return to_int(self.properties["51"])
+
+    @property
+    def pulse_target_type(self) -> int:
+        return to_int(self.properties["52"])
+
+    @property
+    def yellow_teleportation_portal_y_offset(self) -> float:
+        return self.properties["54"]
+
+    @property
+    def teleport_portal_ease(self) -> bool:
+        return to_bool(self.properties["55"])
+
+    @property
+    def activate_group(self) -> bool:
+        return to_bool(self.properties["56"])
+
+    @property
+    def group_ids(self) -> int:
+        return to_int(self.properties["57"])
+
+    @property
+    def lock_to_player_x(self) -> bool:
+        return to_bool(self.properties["58"])
+
+    @property
+    def lock_to_player_y(self) -> bool:
+        return to_bool(self.properties["59"])
+
+    @property
+    def copy_opacity(self) -> bool:
+        return to_bool(self.properties["60"])
+
+    @property
+    def editor_layer_two(self) -> int:
+        return to_int(self.properties["61"])
+
+    @property
+    def spawn_triggered(self) -> bool:
+        return to_bool(self.properties["62"])
+
+    @property
+    def spawn_delay(self) -> float:
+        return self.properties["63"]
+
+    @property
+    def dont_fade(self) -> bool:
+        return to_bool(self.properties["64"])
+
+    @property
+    def main_only(self) -> bool:
+        return to_bool(self.properties["65"])
+
+    @property
+    def detail_only(self) -> bool:
+        return to_bool(self.properties["66"])
+
+    @property
+    def dont_enter(self) -> bool:
+        return to_bool(self.properties["67"])
+
+    @property
+    def degrees(self) -> int:
+        return to_int(self.properties["68"])
+
+    @property
+    def times_three_sixty(self) -> int:
+        return to_int(self.properties["69"])
+
+    @property
+    def lock_object_rotation(self) -> bool:
+        return to_bool(self.properties["70"])
+
+    @property
+    def secondary_group_id(self) -> int:
+        return to_int(self.properties["71"])
+
+    @property
+    def x_mod(self) -> float:
+        return self.properties["72"]
+
+    @property
+    def y_mod(self) -> float:
+        return self.properties["73"]
+
+    @property
+    def strength(self) -> float:
+        return self.properties["75"]
+
+    @property
+    def animation_id(self) -> int:
+        return to_int(self.properties["76"])
+
+    @property
+    def count(self) -> int:
+        return to_int(self.properties["77"])
+
+    @property
+    def subtract_count(self) -> int:
+        return to_int(self.properties["78"])
+
+    @property
+    def pickup_mode(self) -> int:
+        return to_int(self.properties["79"])
+
+    @property
+    def item_block_id(self) -> int:
+        return to_int(self.properties["80"])
+
+    @property
+    def hold_mode(self) -> bool:
+        return to_bool(self.properties["81"])
+
+    @property
+    def toggle_mode(self) -> int:
+        return to_int(self.properties["82"])
+
+    @property
+    def interval(self) -> float:
+        return self.properties["84"]
+
+    @property
+    def easing_rate(self) -> float:
+        return self.properties["85"]
+
+    @property
+    def exclusive(self) -> bool:
+        return to_bool(self.properties["86"])
+
+    @property
+    def multi_trigger(self) -> bool:
+        return to_bool(self.properties["87"])
+
+    @property
+    def comparison(self) -> int:
+        return to_int(self.properties["88"])
+
+    @property
+    def dual_mode(self) -> bool:
+        return to_bool(self.properties["89"])
+
+    @property
+    def speed(self) -> float:
+        return self.properties["90"]
+
+    @property
+    def follow_delay(self) -> float:
+        return self.properties["91"]
+
+    @property
+    def y_offset(self) -> float:
+        return self.properties["92"]
+
+    @property
+    def trigger_on_exit(self) -> bool:
+        return to_bool(self.properties["93"])
+
+    @property
+    def dynamic_block(self) -> bool:
+        return to_bool(self.properties["94"])
+
+    @property
+    def block_b_id(self) -> int:
+        return to_int(self.properties["95"])
+
+    @property
+    def disable_glow(self) -> bool:
+        return to_bool(self.properties["96"])
+
+    @property
+    def custom_rotation_speed(self) -> bool:
+        return to_bool(self.properties["97"])
+
+    @property
+    def disable_rotation(self) -> bool:
+        return to_bool(self.properties["98"])
+
+    @property
+    def multi_activate_orb(self) -> bool:
+        return to_bool(self.properties["99"])
+
+    @property
+    def enable_use_target(self) -> bool:
+        return to_bool(self.properties["100"])
+
+    # @property
+    # def target_pos_coordinates(self) -> TargetPosCoordinates: # No documentation
+    #     return self.properties["101"]
+
+    @property
+    def editor_disable(self) -> bool:
+        return to_bool(self.properties["102"])
+
+    @property
+    def high_detail(self) -> bool:
+        return to_bool(self.properties["103"])
+
+    @property
+    def multi_activate_trigger(self) -> bool:
+        return to_bool(self.properties["104"])
+
+    @property
+    def max_speed(self) -> float:
+        return self.properties["105"]
+
+    @property
+    def randomize_start(self) -> bool:
+        return to_bool(self.properties["106"])
+
+    @property
+    def animation_speed(self) -> float:
+        return self.properties["107"]
+
+    @property
+    def linked_group_id(self) -> int:
+        return to_int(self.properties["108"])
+
+    @property
+    def exit_static(self) -> bool:
+        return to_bool(self.properties["110"])
+
+    @property
+    def free_mode(self) -> bool:
+        return to_bool(self.properties["111"])
+
+    @property
+    def edit_camera_settings(self) -> bool:
+        return to_bool(self.properties["112"])
+
+    @property
+    def easing_free_mode(self) -> int:
+        return to_int(self.properties["113"])
+
+    @property
+    def padding(self) -> bool:
+        return to_bool(self.properties["114"])
+
+    @property
+    def ord(self) -> int:  # I don't know what "ord" is. Maybe order?
+        return to_int(self.properties["115"])
+
+    @property
+    def no_effects(self) -> bool:
+        return to_bool(self.properties["116"])
+
+    @property
+    def reverse(self) -> bool:
+        return to_bool(self.properties["117"])
+
+    @property
+    def time_mod(self) -> float:
+        return self.properties["120"]
+
+    @property
+    def no_touch(self) -> bool:
+        return to_bool(self.properties["121"])
+
+    @property
+    def scale_x(self) -> float:
+        return self.properties["128"]
+
+    @property
+    def scale_y(self) -> float:
+        return self.properties["129"]
+
+    @property
+    def warp_y_angle(self) -> float:
+        return self.properties["131"]
+
+    @property
+    def warp_x_angle(self) -> float:
+        return self.properties["132"]
