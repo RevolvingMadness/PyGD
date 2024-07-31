@@ -1,9 +1,9 @@
 from ..utility.type_converter import to_bool, to_int
 
 
-class Object:
-    def __init__(self, object_json: dict) -> None:
-        self._json = object_json
+class LevelObject:
+    def __init__(self, level_object_json: dict) -> None:
+        self._json = level_object_json
 
     @property
     def id(self) -> int:
@@ -450,9 +450,20 @@ class Object:
         return self._json.get("132")
 
     @staticmethod
-    def default() -> "Object":
-        return Object({
+    def default() -> "LevelObject":
+        return LevelObject({
             "1": 1,  # id
             "2": 15,  # x
             "3": 15  # y
         })
+
+    def items(self):
+        ...
+
+    def encode_to_string(self) -> str:
+        result = ""
+
+        for key, value in self._json.items():
+            result += f"{key},{value.encode_to_string()},"
+
+        return result[:-1]

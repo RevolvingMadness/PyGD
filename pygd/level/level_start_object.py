@@ -1,5 +1,6 @@
+from .level_colors import LevelColors
 from ..level.level_color import LevelColor
-from ..utility.string_helper import decode_color_string
+from ..utility.string_helper import decode_colors_string
 from ..utility.type_converter import to_bool, to_int
 
 
@@ -9,14 +10,7 @@ class LevelStartObject:
 
         colors = self._json.get("kS38")
         if colors is not None:
-            decoded_colors = decode_color_string(colors)
-
-            decoded_colors_classes = []
-
-            for color in decoded_colors:
-                decoded_colors_classes.append(LevelColor(color))
-
-            self._json["kS38"] = decoded_colors_classes
+            self._json["kS38"] = LevelColors(decode_colors_string(colors))
 
     @property
     def audio_track(self) -> int:
@@ -191,3 +185,11 @@ class LevelStartObject:
     @property
     def color_page(self) -> int:
         return to_int(self._json.get("kS39"))
+
+    def encode_to_string(self) -> str:
+        result = ""
+
+        for key, value in self._json.items():
+            result += f"{key},{value.encode_to_string()},"
+
+        return result[:-1]

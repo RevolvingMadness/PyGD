@@ -75,3 +75,11 @@ class LevelColor:
 
     def __repr__(self) -> str:
         return f"({self.from_color_red},{self.from_color_green},{self.from_color_blue})"
+
+    def encode_to_string(self) -> str:
+        result = ""
+
+        for key, value in self._json.items():
+            result += f"{key}_{value.encode_to_string()}_"
+
+        return result[:-1]

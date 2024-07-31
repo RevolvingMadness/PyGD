@@ -1,9 +1,9 @@
 import base64
 import zlib
 
+from .level_objects import LevelObjects
 from .level_start_object import LevelStartObject
-from .object import Object
-from ..utility.string_helper import decode_object_string, decode_level_start_object_string
+from ..utility.string_helper import decode_level_start_object_string, decode_level_objects_string
 
 
 class LevelData:
@@ -14,12 +14,7 @@ class LevelData:
 
         data_split = decompressed.split(";", 1)
         self.level_start_object = LevelStartObject(decode_level_start_object_string(data_split[0]))
-        self.objects_string = data_split[1]
-        self.objects = []
+        self.level_objects = LevelObjects(decode_level_objects_string(data_split[1]))
 
-        object_string_list = self.objects_string.split(";")[:-1]
-
-        for object_string in object_string_list:
-            decoded_object_string = decode_object_string(object_string)
-
-            self.objects.append(Object(decoded_object_string))
+    def encode_to_string(self) -> str:
+        return f"{self.level_start_object.encode_to_string()};{self.level_objects.encode_to_string()}"
