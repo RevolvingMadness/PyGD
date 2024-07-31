@@ -144,9 +144,7 @@ class Object:
             "126": object_json.get("126"),  # unknown - potentially discarded
             "127": object_json.get("127"),  # unknown - potentially discarded
             "128": object_json.get("128"),  # scale_x
-            "129": object_json.get(
-                "129"
-            ),  # scale_y, not sure (documentation is bugged)
+            "129": object_json.get("129"),  # scale_y, not sure (documentation is bugged)
             "130": object_json.get("130"),  # unknown - potentially discarded
             "131": object_json.get("131"),  # warp_y_angle
             "132": object_json.get("132"),  # warp_x_angle

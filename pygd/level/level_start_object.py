@@ -5,9 +5,7 @@ from ..utility.type_converter import to_bool, to_int
 
 class LevelStartObject:
     def __init__(self, level_start_object_string: str) -> None:
-        level_start_object_json = decode_level_start_object_string(
-            level_start_object_string
-        )
+        level_start_object_json = decode_level_start_object_string(level_start_object_string)
 
         self._properties = {
             "kA1": level_start_object_json.get("audio_track"),
