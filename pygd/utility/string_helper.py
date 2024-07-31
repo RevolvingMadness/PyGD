@@ -4,15 +4,15 @@
 def decode_level_start_object_string(level_start_object_string: str) -> dict:
     result = {}
 
-    properties = level_start_object_string.split(",")
+    level_keys_and_values = level_start_object_string.split(",")
 
     key = None
 
-    for property in properties:
+    for level_key_or_value in level_keys_and_values:
         if key is None:
-            key = property
+            key = level_key_or_value
         else:
-            result[key] = property
+            result[key] = level_key_or_value
             key = None
 
     return result
@@ -22,15 +22,15 @@ def decode_level_start_object_string(level_start_object_string: str) -> dict:
 def decode_object_string(object_string: str) -> dict:
     result = {}
 
-    properties = object_string.split(",")
+    object_keys_and_values = object_string.split(",")
 
     key = None
 
-    for property in properties:
+    for object_key_or_value in object_keys_and_values:
         if key is None:
-            key = property
+            key = object_key_or_value
         else:
-            result[key] = property
+            result[key] = object_key_or_value
             key = None
 
     return result

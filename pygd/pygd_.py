@@ -20,8 +20,10 @@ class PyGD:
             file_contents_encrypted = f.read()
 
             decrypted_data = bytes(map(lambda x: x ^ 11, file_contents_encrypted))
-            decoded_data = base64.b64decode(decrypted_data, altchars=b'-_')
-            file_contents_decrypted = zlib.decompress(decoded_data[10:], -zlib.MAX_WBITS)
+            decoded_data = base64.b64decode(decrypted_data, altchars=b"-_")
+            file_contents_decrypted = zlib.decompress(
+                decoded_data[10:], -zlib.MAX_WBITS
+            )
 
             return file_contents_decrypted.decode()
 
@@ -29,7 +31,9 @@ class PyGD:
         unformatted_file_contents = self._decode_dat_file(file_path)
         xml_dom = minidom.parseString(unformatted_file_contents)
 
-        self.file_contents = xml_dom.toprettyxml(indent='    ', encoding='utf-8').decode()
+        self.file_contents = xml_dom.toprettyxml(
+            indent="    ", encoding="utf-8"
+        ).decode()
         root_element = ET.fromstring(self.file_contents)
         llm = to_json(root_element)
         self.levels = Levels(llm["LLM_01"])

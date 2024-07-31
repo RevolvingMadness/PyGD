@@ -7,7 +7,7 @@ from .object import Object
 
 class LevelData:
     def __init__(self, level_data_string: str) -> None:
-        level_data_string = level_data_string.replace('-', '+').replace('_', '/')
+        level_data_string = level_data_string.replace("-", "+").replace("_", "/")
         base64decoded = base64.b64decode(level_data_string.encode())
         decompressed = zlib.decompress(base64decoded[10:], -zlib.MAX_WBITS).decode()
 

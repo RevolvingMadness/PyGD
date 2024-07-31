@@ -8,11 +8,12 @@ from ..utility.type_converter import to_bool, to_int
 # https://wyliemaster.github.io/gddocs/#/resources/client/level-components/level-object
 ###
 
+
 class Object:
     def __init__(self, object_string: str) -> None:
         object_json = decode_object_string(object_string)
 
-        self.properties = {
+        self._properties = {
             "1": object_json.get("1"),  # id
             "2": object_json.get("2"),  # x
             "3": object_json.get("3"),  # y
@@ -143,456 +144,458 @@ class Object:
             "126": object_json.get("126"),  # unknown - potentially discarded
             "127": object_json.get("127"),  # unknown - potentially discarded
             "128": object_json.get("128"),  # scale_x
-            "129": object_json.get("129"),  # scale_y, not sure (documentation is bugged)
+            "129": object_json.get(
+                "129"
+            ),  # scale_y, not sure (documentation is bugged)
             "130": object_json.get("130"),  # unknown - potentially discarded
             "131": object_json.get("131"),  # warp_y_angle
             "132": object_json.get("132"),  # warp_x_angle
             # Suspected to be something related to optimizing colors. Appears on all objects
             "155": object_json.get("155"),  # unknown - undiscovered
             # Same as 155
-            "156": object_json.get("156")  # unknown - undiscovered
+            "156": object_json.get("156"),  # unknown - undiscovered
         }
 
     @property
     def id(self) -> int:
-        return to_int(self.properties["1"])
+        return to_int(self._properties["1"])
 
     @property
     def x(self) -> float:
-        return self.properties["2"]
+        return self._properties["2"]
 
     @property
     def y(self) -> float:
-        return self.properties["3"]
+        return self._properties["3"]
 
     @property
     def flipped_horizontally(self) -> bool:
-        return to_bool(self.properties["4"])
+        return to_bool(self._properties["4"])
 
     @property
     def flipped_vertically(self) -> bool:
-        return to_bool(self.properties["5"])
+        return to_bool(self._properties["5"])
 
     @property
     def rotation(self) -> float:
-        return self.properties["6"]
+        return self._properties["6"]
 
     @property
     def red(self) -> int:
-        return to_int(self.properties["7"])
+        return to_int(self._properties["7"])
 
     @property
     def green(self) -> int:
-        return to_int(self.properties["8"])
+        return to_int(self._properties["8"])
 
     @property
     def blue(self) -> int:
-        return to_int(self.properties["9"])
+        return to_int(self._properties["9"])
 
     @property
     def duration(self) -> float:
-        return self.properties["10"]
+        return self._properties["10"]
 
     @property
     def touch_triggered(self) -> bool:
-        return to_bool(self.properties["11"])
+        return to_bool(self._properties["11"])
 
     @property
     def secret_coin_id(self) -> int:
-        return to_int(self.properties["12"])
+        return to_int(self._properties["12"])
 
     @property
     def special_object_checked(self) -> bool:
-        return to_bool(self.properties["13"])
+        return to_bool(self._properties["13"])
 
     @property
     def tint_ground(self) -> bool:
-        return to_bool(self.properties["14"])
+        return to_bool(self._properties["14"])
 
     @property
     def player_color_one(self) -> bool:
-        return to_bool(self.properties["15"])
+        return to_bool(self._properties["15"])
 
     @property
     def player_color_two(self) -> bool:
-        return to_bool(self.properties["16"])
+        return to_bool(self._properties["16"])
 
     @property
     def blending(self) -> bool:
-        return to_bool(self.properties["17"])
+        return to_bool(self._properties["17"])
 
     @property
     def one_point_nine_color_channel_id(self) -> int:
-        return to_int(self.properties["19"])
+        return to_int(self._properties["19"])
 
     @property
     def editor_layer_one(self) -> int:
-        return to_int(self.properties["20"])
+        return to_int(self._properties["20"])
 
     @property
     def main_color_channel_id(self) -> int:
-        return to_int(self.properties["21"])
+        return to_int(self._properties["21"])
 
     @property
     def secondary_color_channel_id(self) -> int:
-        return to_int(self.properties["22"])
+        return to_int(self._properties["22"])
 
     @property
     def target_color_id(self) -> int:
-        return to_int(self.properties["23"])
+        return to_int(self._properties["23"])
 
     @property
     def z_layer(self) -> int:
-        return to_int(self.properties["24"])
+        return to_int(self._properties["24"])
 
     @property
     def z_order(self) -> int:
-        return to_int(self.properties["25"])
+        return to_int(self._properties["25"])
 
     @property
     def offset_x(self) -> int:
-        return to_int(self.properties["28"])
+        return to_int(self._properties["28"])
 
     @property
     def offset_y(self) -> int:
-        return to_int(self.properties["29"])
+        return to_int(self._properties["29"])
 
     @property
     def easing(self) -> int:
-        return to_int(self.properties["30"])
+        return to_int(self._properties["30"])
 
     @property
     def text(self) -> str:
-        return self.properties["31"]
+        return self._properties["31"]
 
     @property
     def scaling(self) -> float:
-        return self.properties["32"]
+        return self._properties["32"]
 
     @property
     def single_group_id(self) -> int:
-        return to_int(self.properties["33"])
+        return to_int(self._properties["33"])
 
     @property
     def group_parent(self) -> bool:
-        return to_bool(self.properties["34"])
+        return to_bool(self._properties["34"])
 
     @property
     def opacity(self) -> float:
-        return self.properties["35"]
+        return self._properties["35"]
 
     @property
     def main_color_hsv_enabled(self) -> bool:
-        return to_bool(self.properties["41"])
+        return to_bool(self._properties["41"])
 
     @property
     def secondary_color_hsv_enabled(self) -> bool:
-        return to_bool(self.properties["42"])
+        return to_bool(self._properties["42"])
 
     # @property
     # def main_color_hsv(self) -> HSV:  # I'm confused how to "decode" HSV
-    #     return self.properties["43"]
+    #     return self._properties["43"]
 
     # @property
     # def secondary_color_hsv(self) -> HSV:  # I'm confused how to "decode" HSV
-    #     return self.properties["44"]
+    #     return self._properties["44"]
 
     @property
     def fade_in(self) -> float:
-        return self.properties["45"]
+        return self._properties["45"]
 
     @property
     def hold(self) -> float:
-        return self.properties["46"]
+        return self._properties["46"]
 
     @property
     def fade_out(self) -> float:
-        return self.properties["47"]
+        return self._properties["47"]
 
     @property
     def pulse_mode(self) -> int:
-        return to_int(self.properties["48"])
+        return to_int(self._properties["48"])
 
     # @property
     # def copied_color_hsv(self) -> HSV:  # I'm confused how to "decode" HSV
-    #     return self.properties["49"]
+    #     return self._properties["49"]
 
     @property
     def copied_color_id(self) -> int:
-        return to_int(self.properties["50"])
+        return to_int(self._properties["50"])
 
     @property
     def target_group_id(self) -> int:
-        return to_int(self.properties["51"])
+        return to_int(self._properties["51"])
 
     @property
     def pulse_target_type(self) -> int:
-        return to_int(self.properties["52"])
+        return to_int(self._properties["52"])
 
     @property
     def yellow_teleportation_portal_y_offset(self) -> float:
-        return self.properties["54"]
+        return self._properties["54"]
 
     @property
     def teleport_portal_ease(self) -> bool:
-        return to_bool(self.properties["55"])
+        return to_bool(self._properties["55"])
 
     @property
     def activate_group(self) -> bool:
-        return to_bool(self.properties["56"])
+        return to_bool(self._properties["56"])
 
     @property
     def group_ids(self) -> int:
-        return to_int(self.properties["57"])
+        return to_int(self._properties["57"])
 
     @property
     def lock_to_player_x(self) -> bool:
-        return to_bool(self.properties["58"])
+        return to_bool(self._properties["58"])
 
     @property
     def lock_to_player_y(self) -> bool:
-        return to_bool(self.properties["59"])
+        return to_bool(self._properties["59"])
 
     @property
     def copy_opacity(self) -> bool:
-        return to_bool(self.properties["60"])
+        return to_bool(self._properties["60"])
 
     @property
     def editor_layer_two(self) -> int:
-        return to_int(self.properties["61"])
+        return to_int(self._properties["61"])
 
     @property
     def spawn_triggered(self) -> bool:
-        return to_bool(self.properties["62"])
+        return to_bool(self._properties["62"])
 
     @property
     def spawn_delay(self) -> float:
-        return self.properties["63"]
+        return self._properties["63"]
 
     @property
     def dont_fade(self) -> bool:
-        return to_bool(self.properties["64"])
+        return to_bool(self._properties["64"])
 
     @property
     def main_only(self) -> bool:
-        return to_bool(self.properties["65"])
+        return to_bool(self._properties["65"])
 
     @property
     def detail_only(self) -> bool:
-        return to_bool(self.properties["66"])
+        return to_bool(self._properties["66"])
 
     @property
     def dont_enter(self) -> bool:
-        return to_bool(self.properties["67"])
+        return to_bool(self._properties["67"])
 
     @property
     def degrees(self) -> int:
-        return to_int(self.properties["68"])
+        return to_int(self._properties["68"])
 
     @property
     def times_three_sixty(self) -> int:
-        return to_int(self.properties["69"])
+        return to_int(self._properties["69"])
 
     @property
     def lock_object_rotation(self) -> bool:
-        return to_bool(self.properties["70"])
+        return to_bool(self._properties["70"])
 
     @property
     def secondary_group_id(self) -> int:
-        return to_int(self.properties["71"])
+        return to_int(self._properties["71"])
 
     @property
     def x_mod(self) -> float:
-        return self.properties["72"]
+        return self._properties["72"]
 
     @property
     def y_mod(self) -> float:
-        return self.properties["73"]
+        return self._properties["73"]
 
     @property
     def strength(self) -> float:
-        return self.properties["75"]
+        return self._properties["75"]
 
     @property
     def animation_id(self) -> int:
-        return to_int(self.properties["76"])
+        return to_int(self._properties["76"])
 
     @property
     def count(self) -> int:
-        return to_int(self.properties["77"])
+        return to_int(self._properties["77"])
 
     @property
     def subtract_count(self) -> int:
-        return to_int(self.properties["78"])
+        return to_int(self._properties["78"])
 
     @property
     def pickup_mode(self) -> int:
-        return to_int(self.properties["79"])
+        return to_int(self._properties["79"])
 
     @property
     def item_block_id(self) -> int:
-        return to_int(self.properties["80"])
+        return to_int(self._properties["80"])
 
     @property
     def hold_mode(self) -> bool:
-        return to_bool(self.properties["81"])
+        return to_bool(self._properties["81"])
 
     @property
     def toggle_mode(self) -> int:
-        return to_int(self.properties["82"])
+        return to_int(self._properties["82"])
 
     @property
     def interval(self) -> float:
-        return self.properties["84"]
+        return self._properties["84"]
 
     @property
     def easing_rate(self) -> float:
-        return self.properties["85"]
+        return self._properties["85"]
 
     @property
     def exclusive(self) -> bool:
-        return to_bool(self.properties["86"])
+        return to_bool(self._properties["86"])
 
     @property
     def multi_trigger(self) -> bool:
-        return to_bool(self.properties["87"])
+        return to_bool(self._properties["87"])
 
     @property
     def comparison(self) -> int:
-        return to_int(self.properties["88"])
+        return to_int(self._properties["88"])
 
     @property
     def dual_mode(self) -> bool:
-        return to_bool(self.properties["89"])
+        return to_bool(self._properties["89"])
 
     @property
     def speed(self) -> float:
-        return self.properties["90"]
+        return self._properties["90"]
 
     @property
     def follow_delay(self) -> float:
-        return self.properties["91"]
+        return self._properties["91"]
 
     @property
     def y_offset(self) -> float:
-        return self.properties["92"]
+        return self._properties["92"]
 
     @property
     def trigger_on_exit(self) -> bool:
-        return to_bool(self.properties["93"])
+        return to_bool(self._properties["93"])
 
     @property
     def dynamic_block(self) -> bool:
-        return to_bool(self.properties["94"])
+        return to_bool(self._properties["94"])
 
     @property
     def block_b_id(self) -> int:
-        return to_int(self.properties["95"])
+        return to_int(self._properties["95"])
 
     @property
     def disable_glow(self) -> bool:
-        return to_bool(self.properties["96"])
+        return to_bool(self._properties["96"])
 
     @property
     def custom_rotation_speed(self) -> bool:
-        return to_bool(self.properties["97"])
+        return to_bool(self._properties["97"])
 
     @property
     def disable_rotation(self) -> bool:
-        return to_bool(self.properties["98"])
+        return to_bool(self._properties["98"])
 
     @property
     def multi_activate_orb(self) -> bool:
-        return to_bool(self.properties["99"])
+        return to_bool(self._properties["99"])
 
     @property
     def enable_use_target(self) -> bool:
-        return to_bool(self.properties["100"])
+        return to_bool(self._properties["100"])
 
     # @property
     # def target_pos_coordinates(self) -> TargetPosCoordinates: # No documentation
-    #     return self.properties["101"]
+    #     return self._properties["101"]
 
     @property
     def editor_disable(self) -> bool:
-        return to_bool(self.properties["102"])
+        return to_bool(self._properties["102"])
 
     @property
     def high_detail(self) -> bool:
-        return to_bool(self.properties["103"])
+        return to_bool(self._properties["103"])
 
     @property
     def multi_activate_trigger(self) -> bool:
-        return to_bool(self.properties["104"])
+        return to_bool(self._properties["104"])
 
     @property
     def max_speed(self) -> float:
-        return self.properties["105"]
+        return self._properties["105"]
 
     @property
     def randomize_start(self) -> bool:
-        return to_bool(self.properties["106"])
+        return to_bool(self._properties["106"])
 
     @property
     def animation_speed(self) -> float:
-        return self.properties["107"]
+        return self._properties["107"]
 
     @property
     def linked_group_id(self) -> int:
-        return to_int(self.properties["108"])
+        return to_int(self._properties["108"])
 
     @property
     def exit_static(self) -> bool:
-        return to_bool(self.properties["110"])
+        return to_bool(self._properties["110"])
 
     @property
     def free_mode(self) -> bool:
-        return to_bool(self.properties["111"])
+        return to_bool(self._properties["111"])
 
     @property
     def edit_camera_settings(self) -> bool:
-        return to_bool(self.properties["112"])
+        return to_bool(self._properties["112"])
 
     @property
     def easing_free_mode(self) -> int:
-        return to_int(self.properties["113"])
+        return to_int(self._properties["113"])
 
     @property
     def padding(self) -> bool:
-        return to_bool(self.properties["114"])
+        return to_bool(self._properties["114"])
 
     @property
     def ord(self) -> int:  # I don't know what "ord" is. Maybe order?
-        return to_int(self.properties["115"])
+        return to_int(self._properties["115"])
 
     @property
     def no_effects(self) -> bool:
-        return to_bool(self.properties["116"])
+        return to_bool(self._properties["116"])
 
     @property
     def reverse(self) -> bool:
-        return to_bool(self.properties["117"])
+        return to_bool(self._properties["117"])
 
     @property
     def time_mod(self) -> float:
-        return self.properties["120"]
+        return self._properties["120"]
 
     @property
     def no_touch(self) -> bool:
-        return to_bool(self.properties["121"])
+        return to_bool(self._properties["121"])
 
     @property
     def scale_x(self) -> float:
-        return self.properties["128"]
+        return self._properties["128"]
 
     @property
     def scale_y(self) -> float:
-        return self.properties["129"]
+        return self._properties["129"]
 
     @property
     def warp_y_angle(self) -> float:
-        return self.properties["131"]
+        return self._properties["131"]
 
     @property
     def warp_x_angle(self) -> float:
-        return self.properties["132"]
+        return self._properties["132"]

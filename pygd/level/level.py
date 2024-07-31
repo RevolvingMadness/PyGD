@@ -18,7 +18,7 @@ class Level:
         if data is not None:  # decode description from base64
             data = LevelData(data)
 
-        self.properties = {
+        self._properties = {
             "k1": level_json.get("k1"),  # id
             "k2": level_json.get("k2"),  # name
             "k3": description,  # look above
@@ -131,384 +131,384 @@ class Level:
             "k110": level_json.get("k110"),  # local_best_points
             "k111": level_json.get("k111"),  # platformer_seed
             "k112": level_json.get("k112"),  # no_shake
-
             "kI1": level_json.get("kI1"),  # editor_camera_x_position
             "kI2": level_json.get("kI2"),  # editor_camera_y_position
             "kI3": level_json.get("kI3"),  # editor_camera_zoom
             "kI4": level_json.get("kI4"),  # build_tab_page
             "kI5": level_json.get("kI5"),  # build_tab
             "kI6": level_json.get("kI6"),  # build_tab_pages
-            "kI7": level_json.get("kI7")  # editor_layer
+            "kI7": level_json.get("kI7"),  # editor_layer
         }
 
     @property
     def id(self) -> int:
-        return to_int(self.properties["k1"])
+        return to_int(self._properties["k1"])
 
     @property
     def name(self) -> str:
-        return self.properties["k2"]
+        return self._properties["k2"]
 
     @property
     def description(self) -> str:
-        return self.properties["k3"]
+        return self._properties["k3"]
 
     @property
     def data(self) -> LevelData:
-        return self.properties["k4"]
+        return self._properties["k4"]
 
     @property
     def creator(self) -> str:
-        return self.properties["k5"]
+        return self._properties["k5"]
 
     @property
     def user_id(self) -> int:
-        return to_int(self.properties["k6"])
+        return to_int(self._properties["k6"])
 
     @property
     def level_difficulty(self) -> int:
-        return to_int(self.properties["k7"])
+        return to_int(self._properties["k7"])
 
     @property
     def official_song_id(self) -> int:
-        return to_int(self.properties["k8"])
+        return to_int(self._properties["k8"])
 
     @property
     def rating(self) -> int:
-        return to_int(self.properties["k9"])
+        return to_int(self._properties["k9"])
 
     @property
     def rating_sum(self) -> int:
-        return to_int(self.properties["k10"])
+        return to_int(self._properties["k10"])
 
     @property
     def downloads(self) -> int:
-        return to_int(self.properties["k11"])
+        return to_int(self._properties["k11"])
 
     @property
     def completions(self) -> int:
-        return to_int(self.properties["k12"])
+        return to_int(self._properties["k12"])
 
     @property
     def is_editable(self) -> bool:
-        return to_bool(self.properties["k13"])
+        return to_bool(self._properties["k13"])
 
     @property
     def has_been_verified(self) -> bool:
-        return to_bool(self.properties["k14"])
+        return to_bool(self._properties["k14"])
 
     @property
     def has_been_uploaded(self) -> bool:
-        return to_bool(self.properties["k15"])
+        return to_bool(self._properties["k15"])
 
     @property
     def level_version(self) -> int:
-        return to_int(self.properties["k16"])
+        return to_int(self._properties["k16"])
 
     @property
     def game_version(self) -> int:
-        return to_int(self.properties["k17"])
+        return to_int(self._properties["k17"])
 
     @property
     def attempts(self) -> int:
-        return to_int(self.properties["k18"])
+        return to_int(self._properties["k18"])
 
     @property
     def normal_mode_percentage(self) -> int:
-        return to_int(self.properties["k19"])
+        return to_int(self._properties["k19"])
 
     @property
     def practice_mode_percentage(self) -> int:
-        return to_int(self.properties["k20"])
+        return to_int(self._properties["k20"])
 
     @property
     def level_type(self) -> int:
-        return to_int(self.properties["k21"])
+        return to_int(self._properties["k21"])
 
     @property
     def like_rating(self) -> int:
-        return to_int(self.properties["k22"])
+        return to_int(self._properties["k22"])
 
     @property
     def length(self) -> int:
-        return to_int(self.properties["k23"])
+        return to_int(self._properties["k23"])
 
     @property
     def dislikes(self) -> int:
-        return to_int(self.properties["k24"])
+        return to_int(self._properties["k24"])
 
     @property
     def is_demon(self) -> bool:
-        return to_bool(self.properties["k25"])
+        return to_bool(self._properties["k25"])
 
     @property
     def stars(self) -> int:
-        return to_int(self.properties["k26"])
+        return to_int(self._properties["k26"])
 
     @property
     def feature_score(self) -> int:
-        return to_int(self.properties["k27"])
+        return to_int(self._properties["k27"])
 
     @property
     def is_auto(self) -> bool:
-        return to_bool(self.properties["k33"])
+        return to_bool(self._properties["k33"])
 
     @property
     def replay_data(self) -> str:  # I'm a little confused about this
-        return self.properties["k34"]
+        return self._properties["k34"]
 
     @property
     def is_playable(self) -> bool:
-        return to_bool(self.properties["k35"])
+        return to_bool(self._properties["k35"])
 
     @property
     def jumps(self) -> int:
-        return to_int(self.properties["k36"])
+        return to_int(self._properties["k36"])
 
     @property
     def required_coins(self) -> int:
-        return to_int(self.properties["k37"])
+        return to_int(self._properties["k37"])
 
     @property
     def is_unlocked(self) -> bool:
-        return to_bool(self.properties["k38"])
+        return to_bool(self._properties["k38"])
 
     @property
     def level_size(self) -> int:
-        return to_int(self.properties["k39"])
+        return to_int(self._properties["k39"])
 
     @property
     def build_version(self) -> int:
-        return to_int(self.properties["k40"])
+        return to_int(self._properties["k40"])
 
     @property
     def password(self) -> int:
-        return to_int(self.properties["k41"])
+        return to_int(self._properties["k41"])
 
     @property
     def original_level_id(self) -> int:
-        return to_int(self.properties["k42"])
+        return to_int(self._properties["k42"])
 
     @property
     def is_two_player_mode(self) -> bool:
-        return to_bool(self.properties["k43"])
+        return to_bool(self._properties["k43"])
 
     @property
     def custom_song_id(self) -> int:
-        return to_int(self.properties["k45"])
+        return to_int(self._properties["k45"])
 
     @property
     def level_revision(self) -> int:
-        return to_int(self.properties["k46"])
+        return to_int(self._properties["k46"])
 
     @property
     def has_been_modified(self) -> bool:
-        return to_bool(self.properties["k47"])
+        return to_bool(self._properties["k47"])
 
     @property
     def object_count(self) -> int:
-        return to_int(self.properties["k48"])
+        return to_int(self._properties["k48"])
 
     @property
     def binary_version(self) -> int:
-        return to_int(self.properties["k50"])
+        return to_int(self._properties["k50"])
 
     @property
     def capacity_1(self) -> int:  # I don't exactly know what this is for
-        return to_int(self.properties["k51"])
+        return to_int(self._properties["k51"])
 
     @property
     def capacity_2(self) -> int:  # I don't exactly know what this is for
-        return to_int(self.properties["k52"])
+        return to_int(self._properties["k52"])
 
     @property
     def capacity_3(self) -> int:  # I don't exactly know what this is for
-        return to_int(self.properties["k53"])
+        return to_int(self._properties["k53"])
 
     @property
     def capacity_4(self) -> int:  # I don't exactly know what this is for
-        return to_int(self.properties["k54"])
+        return to_int(self._properties["k54"])
 
     @property
     def account_id(self) -> int:
-        return to_int(self.properties["k60"])
+        return to_int(self._properties["k60"])
 
     @property
     def first_coin_has_been_acquired(self) -> bool:
-        return to_bool(self.properties["k61"])
+        return to_bool(self._properties["k61"])
 
     @property
     def second_coin_has_been_acquired(self) -> bool:
-        return to_bool(self.properties["k62"])
+        return to_bool(self._properties["k62"])
 
     @property
     def third_coin_has_been_acquired(self) -> bool:
-        return to_bool(self.properties["k63"])
+        return to_bool(self._properties["k63"])
 
     @property
     def total_coins(self) -> int:
-        return to_int(self.properties["k64"])
+        return to_int(self._properties["k64"])
 
     @property
     def coins_are_verified(self) -> bool:
-        return to_bool(self.properties["k65"])
+        return to_bool(self._properties["k65"])
 
     @property
     def requested_stars(self) -> int:
-        return to_int(self.properties["k66"])
+        return to_int(self._properties["k66"])
 
     @property
     def capacity_string(self) -> str:
-        return self.properties["k67"]
+        return self._properties["k67"]
 
     @property
     def anti_cheat_has_been_triggered(self) -> bool:
-        return to_bool(self.properties["k68"])
+        return to_bool(self._properties["k68"])
 
     @property
     def has_high_object_count(self) -> bool:
-        return to_bool(self.properties["k69"])
+        return to_bool(self._properties["k69"])
 
     @property
     def mana_orb_percentage(self) -> int:
-        return to_int(self.properties["k71"])
+        return to_int(self._properties["k71"])
 
     @property
     def has_ldm(self) -> bool:
-        return to_bool(self.properties["k72"])
+        return to_bool(self._properties["k72"])
 
     @property
     def ldm_is_enabled(self) -> bool:
-        return to_bool(self.properties["k73"])
+        return to_bool(self._properties["k73"])
 
     @property
     def timely_id(self) -> int:
-        return to_int(self.properties["k74"])
+        return to_int(self._properties["k74"])
 
     @property
     def epic_rating(self) -> int:
-        return to_int(self.properties["k75"])
+        return to_int(self._properties["k75"])
 
     @property
     def demon_type(self) -> int:
-        return to_int(self.properties["k76"])
+        return to_int(self._properties["k76"])
 
     @property
     def is_gauntlet(self) -> bool:
-        return to_bool(self.properties["k77"])
+        return to_bool(self._properties["k77"])
 
     @property
     def is_alt_game(self) -> bool:
-        return to_bool(self.properties["k78"])
+        return to_bool(self._properties["k78"])
 
     @property
     def is_unlisted(self) -> bool:
-        return to_bool(self.properties["k79"])
+        return to_bool(self._properties["k79"])
 
     @property
     def seconds_spent_editing(self) -> int:
-        return to_int(self.properties["k80"])
+        return to_int(self._properties["k80"])
 
     @property
     def seconds_spent_editing_total(self) -> int:
-        return to_int(self.properties["k81"])
+        return to_int(self._properties["k81"])
 
     @property
     def is_level_favorited(self) -> bool:
-        return to_bool(self.properties["k82"])
+        return to_bool(self._properties["k82"])
 
     @property
     def level_order(self) -> int:
-        return to_int(self.properties["k83"])
+        return to_int(self._properties["k83"])
 
     @property
     def level_folder(self) -> int:
-        return to_int(self.properties["k84"])
+        return to_int(self._properties["k84"])
 
     @property
     def clicks(self) -> int:
-        return to_int(self.properties["k85"])
+        return to_int(self._properties["k85"])
 
     @property
     def player_time(self) -> int:
-        return to_int(self.properties["k86"])
+        return to_int(self._properties["k86"])
 
     @property
     def level_seed(self) -> int:  # Not quite sure about the type
-        return to_int(self.properties["k87"])
+        return to_int(self._properties["k87"])
 
     @property
     def level_progress(self) -> str:
-        return self.properties["k88"]
+        return self._properties["k88"]
 
+    # noinspection PyPep8Naming
     @property
     def vfDChk(self) -> bool:
-        return to_bool(self.properties["k89"])
+        return to_bool(self._properties["k89"])
 
     @property
     def leaderboard_percentage(self) -> int:
-        return to_int(self.properties["k90"])
+        return to_int(self._properties["k90"])
 
     @property
     def verification_time(self) -> int:
-        return to_int(self.properties["k95"])
+        return to_int(self._properties["k95"])
 
     @property
     def song_list(self) -> str:
-        return self.properties["k104"]
+        return self._properties["k104"]
 
     @property
     def sfx_list(self) -> str:
-        return self.properties["k105"]
+        return self._properties["k105"]
 
     @property
     def best_time(self) -> int:
-        return to_int(self.properties["k107"])
+        return to_int(self._properties["k107"])
 
     @property
     def best_points(self) -> int:
-        return to_int(self.properties["k108"])
+        return to_int(self._properties["k108"])
 
     @property
     def local_best_times(self) -> int:
-        return to_int(self.properties["k109"])
+        return to_int(self._properties["k109"])
 
     @property
     def local_best_points(self) -> int:
-        return to_int(self.properties["k110"])
+        return to_int(self._properties["k110"])
 
     @property
     def platformer_seed(self) -> int:
-        return to_int(self.properties["k111"])
+        return to_int(self._properties["k111"])
 
     @property
     def no_shake(self) -> bool:
-        return to_bool(self.properties["k112"])
+        return to_bool(self._properties["k112"])
 
     @property
     def editor_camera_x_position(self) -> float:
-        return self.properties["kI1"]
+        return self._properties["kI1"]
 
     @property
     def editor_camera_y_position(self) -> float:
-        return self.properties["kI2"]
+        return self._properties["kI2"]
 
     @property
     def editor_camera_zoom(self) -> float:
-        return self.properties["kI3"]
+        return self._properties["kI3"]
 
     @property
     def build_tab_page(self) -> int:
-        return to_int(self.properties["kI4"])
+        return to_int(self._properties["kI4"])
 
     @property
     def build_tab(self) -> int:
-        return to_int(self.properties["kI5"])
+        return to_int(self._properties["kI5"])
 
     @property
     def build_tab_pages(self) -> dict:  # May have to make a separate class for this
-        return self.properties["kI6"]
+        return self._properties["kI6"]
 
     @property
     def editor_layer(self) -> float:
-        return self.properties["kI7"]
+        return self._properties["kI7"]
