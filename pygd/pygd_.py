@@ -4,7 +4,7 @@ import zlib
 from xml.dom import minidom
 
 from pygd.level.levels import Levels
-from pygd.utility import to_json
+from pygd.utility.to_json import to_json
 
 
 class PyGD:
