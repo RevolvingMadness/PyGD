@@ -9,6 +9,7 @@ from .level_color import LevelColor
 # middleground / middleground 2 color
 # color channel
 
+
 class LevelColors:
     def __init__(self, level_colors_list: list) -> None:
         self._list = []

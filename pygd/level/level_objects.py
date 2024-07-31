@@ -6,6 +6,7 @@ from .level_object import LevelObject
 # `encode_to_string` method.
 # If any of you have ideas, open an issue.
 
+
 class LevelObjects:
     def __init__(self, level_objects_list: list) -> None:
         self._list = []

@@ -391,3 +391,375 @@ class Level:
     @property
     def editor_layer(self) -> float:
         return self._json.get("kI7")
+
+    @id.setter
+    def id(self, value: int) -> None:
+        self._json["k1"] = value
+
+    @name.setter
+    def name(self, value: str) -> None:
+        self._json["k2"] = value
+
+    @description.setter
+    def description(self, value: str) -> None:
+        self._json["k3"] = value
+
+    @data.setter
+    def data(self, value: LevelData) -> None:
+        self._json["k4"] = value
+
+    @creator.setter
+    def creator(self, value: str) -> None:
+        self._json["k5"] = value
+
+    @user_id.setter
+    def user_id(self, value: int) -> None:
+        self._json["k6"] = value
+
+    @level_difficulty.setter
+    def level_difficulty(self, value: int) -> None:
+        self._json["k7"] = value
+
+    @official_song_id.setter
+    def official_song_id(self, value: int) -> None:
+        self._json["k8"] = value
+
+    @rating.setter
+    def rating(self, value: int) -> None:
+        self._json["k9"] = value
+
+    @rating_sum.setter
+    def rating_sum(self, value: int) -> None:
+        self._json["k10"] = value
+
+    @downloads.setter
+    def downloads(self, value: int) -> None:
+        self._json["k11"] = value
+
+    @completions.setter
+    def completions(self, value: int) -> None:
+        self._json["k12"] = value
+
+    @is_editable.setter
+    def is_editable(self, value: bool) -> None:
+        self._json["k13"] = value
+
+    @has_been_verified.setter
+    def has_been_verified(self, value: bool) -> None:
+        self._json["k14"] = value
+
+    @has_been_uploaded.setter
+    def has_been_uploaded(self, value: bool) -> None:
+        self._json["k15"] = value
+
+    @level_version.setter
+    def level_version(self, value: int) -> None:
+        self._json["k16"] = value
+
+    @game_version.setter
+    def game_version(self, value: int) -> None:
+        self._json["k17"] = value
+
+    @attempts.setter
+    def attempts(self, value: int) -> None:
+        self._json["k18"] = value
+
+    @normal_mode_percentage.setter
+    def normal_mode_percentage(self, value: int) -> None:
+        self._json["k19"] = value
+
+    @practice_mode_percentage.setter
+    def practice_mode_percentage(self, value: int) -> None:
+        self._json["k20"] = value
+
+    @level_type.setter
+    def level_type(self, value: int) -> None:
+        self._json["k21"] = value
+
+    @like_rating.setter
+    def like_rating(self, value: int) -> None:
+        self._json["k22"] = value
+
+    @length.setter
+    def length(self, value: int) -> None:
+        self._json["k23"] = value
+
+    @dislikes.setter
+    def dislikes(self, value: int) -> None:
+        self._json["k24"] = value
+
+    @is_demon.setter
+    def is_demon(self, value: bool) -> None:
+        self._json["k25"] = value
+
+    @stars.setter
+    def stars(self, value: int) -> None:
+        self._json["k26"] = value
+
+    @feature_score.setter
+    def feature_score(self, value: int) -> None:
+        self._json["k27"] = value
+
+    @is_auto.setter
+    def is_auto(self, value: bool) -> None:
+        self._json["k33"] = value
+
+    @replay_data.setter
+    def replay_data(self, value: str) -> None:
+        self._json["k34"] = value
+
+    @is_playable.setter
+    def is_playable(self, value: bool) -> None:
+        self._json["k35"] = value
+
+    @jumps.setter
+    def jumps(self, value: int) -> None:
+        self._json["k36"] = value
+
+    @required_coins.setter
+    def required_coins(self, value: int) -> None:
+        self._json["k37"] = value
+
+    @is_unlocked.setter
+    def is_unlocked(self, value: bool) -> None:
+        self._json["k38"] = value
+
+    @level_size.setter
+    def level_size(self, value: int) -> None:
+        self._json["k39"] = value
+
+    @build_version.setter
+    def build_version(self, value: int) -> None:
+        self._json["k40"] = value
+
+    @password.setter
+    def password(self, value: int) -> None:
+        self._json["k41"] = value
+
+    @original_level_id.setter
+    def original_level_id(self, value: int) -> None:
+        self._json["k42"] = value
+
+    @is_two_player_mode.setter
+    def is_two_player_mode(self, value: bool) -> None:
+        self._json["k43"] = value
+
+    @custom_song_id.setter
+    def custom_song_id(self, value: int) -> None:
+        self._json["k45"] = value
+
+    @level_revision.setter
+    def level_revision(self, value: int) -> None:
+        self._json["k46"] = value
+
+    @has_been_modified.setter
+    def has_been_modified(self, value: bool) -> None:
+        self._json["k47"] = value
+
+    @object_count.setter
+    def object_count(self, value: int) -> None:
+        self._json["k48"] = value
+
+    @binary_version.setter
+    def binary_version(self, value: int) -> None:
+        self._json["k50"] = value
+
+    @capacity_1.setter
+    def capacity_1(self, value: int) -> None:
+        self._json["k51"] = value
+
+    @capacity_2.setter
+    def capacity_2(self, value: int) -> None:
+        self._json["k52"] = value
+
+    @capacity_3.setter
+    def capacity_3(self, value: int) -> None:
+        self._json["k53"] = value
+
+    @capacity_4.setter
+    def capacity_4(self, value: int) -> None:
+        self._json["k54"] = value
+
+    @account_id.setter
+    def account_id(self, value: int) -> None:
+        self._json["k60"] = value
+
+    @first_coin_has_been_acquired.setter
+    def first_coin_has_been_acquired(self, value: bool) -> None:
+        self._json["k61"] = value
+
+    @second_coin_has_been_acquired.setter
+    def second_coin_has_been_acquired(self, value: bool) -> None:
+        self._json["k62"] = value
+
+    @third_coin_has_been_acquired.setter
+    def third_coin_has_been_acquired(self, value: bool) -> None:
+        self._json["k63"] = value
+
+    @total_coins.setter
+    def total_coins(self, value: int) -> None:
+        self._json["k64"] = value
+
+    @coins_are_verified.setter
+    def coins_are_verified(self, value: bool) -> None:
+        self._json["k65"] = value
+
+    @requested_stars.setter
+    def requested_stars(self, value: int) -> None:
+        self._json["k66"] = value
+
+    @capacity_string.setter
+    def capacity_string(self, value: str) -> None:
+        self._json["k67"] = value
+
+    @anti_cheat_has_been_triggered.setter
+    def anti_cheat_has_been_triggered(self, value: bool) -> None:
+        self._json["k68"] = value
+
+    @has_high_object_count.setter
+    def has_high_object_count(self, value: bool) -> None:
+        self._json["k69"] = value
+
+    @mana_orb_percentage.setter
+    def mana_orb_percentage(self, value: int) -> None:
+        self._json["k71"] = value
+
+    @has_ldm.setter
+    def has_ldm(self, value: bool) -> None:
+        self._json["k72"] = value
+
+    @ldm_is_enabled.setter
+    def ldm_is_enabled(self, value: bool) -> None:
+        self._json["k73"] = value
+
+    @timely_id.setter
+    def timely_id(self, value: int) -> None:
+        self._json["k74"] = value
+
+    @epic_rating.setter
+    def epic_rating(self, value: int) -> None:
+        self._json["k75"] = value
+
+    @demon_type.setter
+    def demon_type(self, value: int) -> None:
+        self._json["k76"] = value
+
+    @is_gauntlet.setter
+    def is_gauntlet(self, value: bool) -> None:
+        self._json["k77"] = value
+
+    @is_alt_game.setter
+    def is_alt_game(self, value: bool) -> None:
+        self._json["k78"] = value
+
+    @is_unlisted.setter
+    def is_unlisted(self, value: bool) -> None:
+        self._json["k79"] = value
+
+    @seconds_spent_editing.setter
+    def seconds_spent_editing(self, value: int) -> None:
+        self._json["k80"] = value
+
+    @seconds_spent_editing_total.setter
+    def seconds_spent_editing_total(self, value: int) -> None:
+        self._json["k81"] = value
+
+    @is_level_favorited.setter
+    def is_level_favorited(self, value: bool) -> None:
+        self._json["k82"] = value
+
+    @level_order.setter
+    def level_order(self, value: int) -> None:
+        self._json["k83"] = value
+
+    @level_folder.setter
+    def level_folder(self, value: int) -> None:
+        self._json["k84"] = value
+
+    @clicks.setter
+    def clicks(self, value: int) -> None:
+        self._json["k85"] = value
+
+    @player_time.setter
+    def player_time(self, value: int) -> None:
+        self._json["k86"] = value
+
+    @level_seed.setter
+    def level_seed(self, value: int) -> None:
+        self._json["k87"] = value
+
+    @level_progress.setter
+    def level_progress(self, value: str) -> None:
+        self._json["k88"] = value
+
+    @vfDChk.setter
+    def vfDChk(self, value: bool) -> None:
+        self._json["k89"] = value
+
+    @leaderboard_percentage.setter
+    def leaderboard_percentage(self, value: int) -> None:
+        self._json["k90"] = value
+
+    @verification_time.setter
+    def verification_time(self, value: int) -> None:
+        self._json["k95"] = value
+
+    @song_list.setter
+    def song_list(self, value: str) -> None:
+        self._json["k104"] = value
+
+    @sfx_list.setter
+    def sfx_list(self, value: str) -> None:
+        self._json["k105"] = value
+
+    @best_time.setter
+    def best_time(self, value: int) -> None:
+        self._json["k107"] = value
+
+    @best_points.setter
+    def best_points(self, value: int) -> None:
+        self._json["k108"] = value
+
+    @local_best_times.setter
+    def local_best_times(self, value: int) -> None:
+        self._json["k109"] = value
+
+    @local_best_points.setter
+    def local_best_points(self, value: int) -> None:
+        self._json["k110"] = value
+
+    @platformer_seed.setter
+    def platformer_seed(self, value: int) -> None:
+        self._json["k111"] = value
+
+    @no_shake.setter
+    def no_shake(self, value: bool) -> None:
+        self._json["k112"] = value
+
+    @editor_camera_x_position.setter
+    def editor_camera_x_position(self, value: float) -> None:
+        self._json["kI1"] = value
+
+    @editor_camera_y_position.setter
+    def editor_camera_y_position(self, value: float) -> None:
+        self._json["kI2"] = value
+
+    @editor_camera_zoom.setter
+    def editor_camera_zoom(self, value: float) -> None:
+        self._json["kI3"] = value
+
+    @build_tab_page.setter
+    def build_tab_page(self, value: int) -> None:
+        self._json["kI4"] = value
+
+    @build_tab.setter
+    def build_tab(self, value: int) -> None:
+        self._json["kI5"] = value
+
+    @build_tab_pages.setter
+    def build_tab_pages(self, value: dict) -> None:
+        self._json["kI6"] = value
+
+    @editor_layer.setter
+    def editor_layer(self, value: float) -> None:
+        self._json["kI7"] = value
