@@ -1,8 +1,8 @@
 import base64
+import gzip
 import os
 import shutil
 import xml.etree.ElementTree as ET
-import zlib
 from datetime import datetime
 from xml.dom import minidom
 
@@ -33,22 +33,26 @@ class PyGD:
         self.binary_version = llm["LLM_02"]
         self.local_lists = llm["LLM_03"]
 
-        del self.local_lists["_isArr"]
+        if "_isArr" in self.local_lists:
+            del self.local_lists["_isArr"]
+
         self._initialize()
 
     @staticmethod
+    def _xor(data: bytes) -> bytes:
+        return bytes(byte ^ 11 for byte in data)
+
+    @staticmethod
     def _decrypt_dat_file(file_contents: bytes) -> str:
-        xor_shifted = bytes(map(lambda x: x ^ 11, file_contents))
-        base64_decoded = base64.b64decode(xor_shifted, altchars=b"-_")
-        zlib_decompressed = zlib.decompress(base64_decoded[10:], -zlib.MAX_WBITS)
-        return zlib_decompressed.decode()
+        xored_file_contents = PyGD._xor(file_contents)
+        urlsafe_base64_decoded = base64.urlsafe_b64decode(xored_file_contents)
+        return gzip.decompress(urlsafe_base64_decoded).decode()
 
     @staticmethod
     def _encrypt_dat_file(file_contents: str) -> bytes:
-        zlib_compressed = zlib.compress(file_contents.encode(), level=9)
-        base64_encoded = base64.b64encode(zlib_compressed, altchars=b"-_")
-        xor_shifted = bytes(map(lambda x: x ^ 11, base64_encoded))
-        return xor_shifted
+        compressed = gzip.compress(file_contents.encode())
+        urlsafe_base64_encoded = base64.urlsafe_b64encode(compressed)
+        return PyGD._xor(urlsafe_base64_encoded)
 
     def get_levels(self) -> Levels:
         return self.levels
@@ -89,5 +93,5 @@ class PyGD:
 
         file_contents = ET.tostring(contents_element).decode()
 
-        with open(self._cc_local_levels_path, "w") as f:
-            f.write(file_contents)
+        with open(self._cc_local_levels_path, "wb") as f:
+            f.write(self._encrypt_dat_file(file_contents))

@@ -3,7 +3,8 @@ from .level import Level
 
 class Levels:
     def __init__(self, levels_json: dict) -> None:
-        del levels_json["_isArr"]
+        if "_isArr" in levels_json:
+            del levels_json["_isArr"]
 
         self.levels = {}
 
