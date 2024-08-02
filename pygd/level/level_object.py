@@ -11,10 +11,18 @@ class LevelObject:
 
     @property
     def x(self) -> float:
+        return self._json.get("2") / 30 - 0.5
+
+    @property
+    def real_x(self) -> float:
         return self._json.get("2")
 
     @property
     def y(self) -> float:
+        return self._json.get("3") / 30 - 0.5
+
+    @property
+    def real_y(self) -> float:
         return self._json.get("3")
 
     @property
@@ -459,10 +467,18 @@ class LevelObject:
 
     @x.setter
     def x(self, value: float) -> None:
+        self._json["2"] = 30 * value + 15
+
+    @real_x.setter
+    def real_x(self, value: float) -> None:
         self._json["2"] = value
 
     @y.setter
     def y(self, value: float) -> None:
+        self._json["3"] = 30 * value + 15
+
+    @real_y.setter
+    def real_y(self, value: float) -> None:
         self._json["3"] = value
 
     @flipped_horizontally.setter

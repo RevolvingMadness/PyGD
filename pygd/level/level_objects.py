@@ -20,6 +20,9 @@ class LevelObjects:
     def add_object(self, level_object: LevelObject) -> None:
         self._list.append(level_object)
 
+    def add_all_objects(self, level_objects: list) -> None:
+        self._list.extend(level_objects)
+
     def pygd_encode(self) -> str:
         result = ""
 
