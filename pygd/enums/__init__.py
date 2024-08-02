@@ -1,3 +1,4 @@
+from .color_channels import *
 from .easing import *
 from .gamemode import *
 from .instant_count_comparison import *

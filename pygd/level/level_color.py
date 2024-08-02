@@ -141,6 +141,15 @@ class LevelColor:
     def copy_opacity(self, value: bool) -> None:
         self._json["17"] = value
 
+    @staticmethod
+    def create(red: int, green: int, blue: int, color_channel: int) -> "LevelColor":
+        return LevelColor({
+            "1": red,
+            "2": green,
+            "3": blue,
+            "6": color_channel
+        })
+
     def __repr__(self) -> str:
         return f"({self.from_color_red},{self.from_color_green},{self.from_color_blue})"
 

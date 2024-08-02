@@ -12,3 +12,7 @@ def _str_pygd_encode(string: str) -> str:
 
 def _dict_pygd_encode(dictionary: dict) -> dict:
     return dictionary
+
+
+def _boolean_pygd_encode(boolean: bool) -> int:
+    return int(boolean)

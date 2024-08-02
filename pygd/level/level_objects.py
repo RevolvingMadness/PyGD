@@ -27,3 +27,6 @@ class LevelObjects:
             result += f"{level_object.pygd_encode()};"
 
         return result
+
+    def get(self) -> list[LevelObject]:
+        return self._list

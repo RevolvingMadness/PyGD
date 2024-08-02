@@ -1,5 +1,4 @@
 from .level_colors import LevelColors
-from ..level.level_color import LevelColor
 from ..utility.string_helper import decode_colors_string
 from ..utility.type_converter import to_bool, to_int
 
@@ -178,7 +177,7 @@ class LevelStartObject:
         return to_bool(self._json.get("kA45"))
 
     @property
-    def colors(self) -> list[LevelColor]:
+    def colors(self) -> LevelColors:
         # https://wyliemaster.github.io/gddocs/#/resources/client/level-components/color-string
         return self._json.get("kS38")
 
@@ -351,7 +350,7 @@ class LevelStartObject:
         self._json["kA45"] = value
 
     @colors.setter
-    def colors(self, value: list[LevelColor]) -> None:
+    def colors(self, value: LevelColors) -> None:
         self._json["kS38"] = value
 
     @color_page.setter

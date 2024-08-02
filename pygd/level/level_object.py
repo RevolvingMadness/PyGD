@@ -449,6 +449,10 @@ class LevelObject:
     def warp_x_angle(self) -> float:
         return self._json.get("132")
 
+    @property
+    def hide(self) -> float:
+        return self._json.get("135")
+
     @id.setter
     def id(self, value: int) -> None:
         self._json["1"] = value
@@ -877,12 +881,16 @@ class LevelObject:
     def warp_x_angle(self, value: float) -> None:
         self._json["132"] = value
 
+    @hide.setter
+    def hide(self, value: bool) -> None:
+        self._json["135"] = value
+
     @staticmethod
-    def default() -> "LevelObject":
+    def create(id_: int = 1, x: int = 15, y: int = 15) -> "LevelObject":
         return LevelObject({
-            "1": 1,  # id
-            "2": 15,  # x
-            "3": 15  # y
+            "1": id_,
+            "2": x,
+            "3": y
         })
 
     def pygd_encode(self) -> str:

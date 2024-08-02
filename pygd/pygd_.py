@@ -9,7 +9,7 @@ from xml.dom import minidom
 import forbiddenfruit
 
 from pygd.level.levels import Levels
-from pygd.utility.builtinclass_encode import _int_pygd_encode, _float_pygd_encode, _str_pygd_encode, _dict_pygd_encode
+from pygd.utility.builtinclass_encode import _int_pygd_encode, _float_pygd_encode, _str_pygd_encode, _dict_pygd_encode, _boolean_pygd_encode
 from pygd.utility.element_helper import to_json, from_object
 
 
@@ -66,6 +66,7 @@ class PyGD:
         forbiddenfruit.curse(float, "pygd_encode", _float_pygd_encode)
         forbiddenfruit.curse(str, "pygd_encode", _str_pygd_encode)
         forbiddenfruit.curse(dict, "pygd_encode", _dict_pygd_encode)
+        forbiddenfruit.curse(bool, "pygd_encode", _boolean_pygd_encode)
 
     def overwrite_gd_save(self, i_accept_the_risks: bool = False):
         if not i_accept_the_risks:

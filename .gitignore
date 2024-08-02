@@ -1,6 +1,7 @@
 __pycache__/
 .idea/
 backups/
+examples/
 
 CCLocalLevels.dat
 CCLocalLevelsDecrypted.xml
