@@ -4,6 +4,7 @@ from ..utility.type_converter import to_bool, to_int
 class LevelObject:
     def __init__(self, level_object_json: dict) -> None:
         self._json = level_object_json
+        self.spaces_per_block = 15
 
     @property
     def id(self) -> int:
@@ -11,7 +12,7 @@ class LevelObject:
 
     @property
     def x(self) -> float:
-        return self._json.get("2") / 30 - 0.5
+        return self._json.get("2") / self.spaces_per_block - 0.5
 
     @property
     def real_x(self) -> float:
@@ -19,7 +20,7 @@ class LevelObject:
 
     @property
     def y(self) -> float:
-        return self._json.get("3") / 30 - 0.5
+        return self._json.get("3") / self.spaces_per_block - 0.5
 
     @property
     def real_y(self) -> float:
@@ -467,7 +468,7 @@ class LevelObject:
 
     @x.setter
     def x(self, value: float) -> None:
-        self._json["2"] = 30 * value + 15
+        self._json["2"] = self.spaces_per_block * value + 15
 
     @real_x.setter
     def real_x(self, value: float) -> None:
@@ -475,7 +476,7 @@ class LevelObject:
 
     @y.setter
     def y(self, value: float) -> None:
-        self._json["3"] = 30 * value + 15
+        self._json["3"] = self.spaces_per_block * value + 15
 
     @real_y.setter
     def real_y(self, value: float) -> None:
